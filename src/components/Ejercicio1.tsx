@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import react from '@vitejs/plugin-react';
 
 const numeros: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
@@ -21,6 +20,16 @@ const Ejercicio1: React.FC = () => {
                 <strong>Vector: </strong>
             </p>
             <button onClick={handleClasificar} className="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Clasificar</button>
+            {clasificado && (
+                <div className="mt-4">
+                    <p>
+                        <strong>Pares:</strong> {pares.join(', ')}
+                    </p>
+                    <p>
+                        <strong>Impares:</strong> {impares.join(', ')}
+                    </p>
+                </div>
+            )}
         </div>
     )
 }
