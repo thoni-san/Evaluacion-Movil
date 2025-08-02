@@ -1,54 +1,45 @@
-import React from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import React, { type CSSProperties } from 'react';
 
-const { width, height } = Dimensions.get('window');
-const SIDEBAR_WIDTH = 50;
-const BOX_SMALL = 40;
+const SIDEBAR_W = 50; 
+const BOX_H = 40;    
 
 export const Ejercicio1: React.FC = () => {
+  const container: CSSProperties = {
+    display: 'flex',
+    width: '90vw',
+    height: '60vh',
+    backgroundColor: '#233044',
+  };
+
+  const sidebar: CSSProperties = {
+    width: SIDEBAR_W,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    padding: '10px 0',
+    backgroundColor: '#233044',
+  };
+
+  const main: CSSProperties = {
+    flex: 1,
+    backgroundColor: '#233044',
+  };
+
+  const box = (bg: string, width = SIDEBAR_W, height = BOX_H, flexGrow = 0): CSSProperties => ({
+    width,
+    height,
+    backgroundColor: bg,
+    flexGrow,
+  });
+
   return (
-    <View style={styles.container}>
-      <View style={styles.sidebar}>
-        <View style={styles.purple} />
-        <View style={styles.orangeLong} />
-        <View style={styles.cyanSmall} />
-      </View>
-      <View style={styles.main} />
-    </View>
+    <div style={container}>
+      <div style={sidebar}>
+        <div style={box('#6C5DD3')} />
+        <div style={box('#F29E4C', SIDEBAR_W, BOX_H, 1)} />
+        <div style={box('#3FC1C9')} />
+      </div>
+      <div style={main} />
+    </div>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    width: width * 0.9,
-    height: height * 0.6,
-    backgroundColor: '#233044',
-  },
-  sidebar: {
-    width: SIDEBAR_WIDTH,
-    justifyContent: 'space-between',
-    paddingVertical: 10,
-    backgroundColor: '#233044',
-  },
-  main: {
-    flex: 1,
-    backgroundColor: '#233044',
-  },
-  purple: {
-    width: SIDEBAR_WIDTH,
-    height: BOX_SMALL,
-    backgroundColor: '#6C5DD3',
-  },
-  orangeLong: {
-    width: SIDEBAR_WIDTH,
-    flex: 1,
-    marginVertical: 5,
-    backgroundColor: '#F29E4C',
-  },
-  cyanSmall: {
-    width: SIDEBAR_WIDTH,
-    height: BOX_SMALL,
-    backgroundColor: '#3FC1C9',
-  },
-});
